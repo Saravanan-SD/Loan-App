@@ -1,14 +1,15 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
+import joblib
 
-# ... (Previous code remains unchanged)
-
+model = joblib.load('nbc.pkl') 
+x_label_encoder = joblib.load('labelencoder_x.pkl')  
+scaler = joblib.load('scaler.pkl')
 # Streamlit app
 st.title('Loan Approval Predictor')
 
@@ -44,7 +45,7 @@ input_data = {
 
 input_df = pd.DataFrame(input_data)
 
-prediction = clf.predict(input_df)[0]
+prediction = nbc.predict(input_df)[0]
 
 # Display the result
 st.header('Prediction Result')
